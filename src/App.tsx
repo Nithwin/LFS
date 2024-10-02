@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import Main from './components/VeryFirstPage/Main/Main';
+import Admin from './components/Admin/Home';
+import User from './components/User/Main';
+import UserLogin from './components/Login/User/User';
+import AdminLogin from './components/Login/Admin/Admin';
+import {Route, Routes} from 'react-router-dom';
+import Header from './components/VeryFirstPage/Header/Header';
+import Home from './components/VeryFirstPage/Home/Home';
+import About from './components/VeryFirstPage/About/About';
+import Contact from './components/VeryFirstPage/Contact/Contact';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className='p-2 '>
+<Routes>
+  <Route path="/" element={<Main />} >
+      <Route path={'/contact'} element={<Contact/>} />
+      <Route path={'/about'} element={<About/>} />
+  </Route>
+  <Route path="/user-login" element={<UserLogin />} />
+  <Route path="/admin-login" element={<AdminLogin />} />
+  <Route path="/user/*" element={<User />} />
+  <Route path="/admin/*" element={<Admin />} />
+</Routes>
+
+
+   </div>
+
   );
 }
 
