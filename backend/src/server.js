@@ -14,7 +14,7 @@ app.use(e.json())
 app.use((req,res,next) => {
     console.log("Req received");
     next();
-})
+});
 
 app.listen(port,function() {
     console.log("Server started at port",port);
@@ -24,7 +24,7 @@ app.get("/",async (req,res) => {
     return res.json({
         message: "Hello from server",
     }).status(200);
-})
+});
 
 app.post("/signup",async (req,res) => {
     const { email, password } = req.body;
@@ -55,4 +55,70 @@ app.post("/signin",async (req,res) => {
     }
 
     return res.redirect("http://localhost:3000/user");
-})
+});
+
+app.get("/user/:email", async (req, res) => {
+    const user_email = req.params.email;
+
+    try {
+        const connection = await mysql.createConnection(dbConfig);
+
+        const query = `
+            SELECT 
+                up.id, 
+                up.name, 
+                up.register_number, 
+                up.email, 
+                up.phone, 
+                up.gender, 
+                up.date_of_birth, 
+                ai.tenth_marks, 
+                ai.twelfth_marks, 
+                ai.diploma, 
+                ai.current_backlogs, 
+                ai.interested_in_placement 
+            FROM 
+                userprofile up 
+            LEFT JOIN 
+                academic_information ai ON up.academic_info_id = ai.id 
+            WHERE 
+                up.email = ?`;
+
+        const [results] = await connection.execute(query, [user_email]);
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(results[0]);
+    } catch (error) {
+        console.error('Database query error:', error);
+        res.status(500).json({ error: 'Database query error' });
+    }
+});
+
+app.post("/user", async (req, res) => {
+    const { name, register_number, email, phone, gender, date_of_birth, academic_info } = req.body;
+
+    try {
+        const [academicResult] = await conn.execute(
+            `INSERT INTO academic_information (tenth_marks, twelfth_marks, diploma, current_backlogs, interested_in_placement) 
+             VALUES (?, ?, ?, ?, ?)`,
+            [academic_info.tenth_marks, academic_info.twelfth_marks, academic_info.diploma, academic_info.current_backlogs, academic_info.interested_in_placement]
+        );
+
+        const academicInfoId = academicResult.insertId;
+
+        const [userResult] = await conn.execute(
+            `INSERT INTO userprofile (name, register_number, email, phone, gender, date_of_birth, academic_info_id) 
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [name, register_number, email, phone, gender, date_of_birth, academicInfoId]
+        );
+
+        res.status(200).json({ id: userResult.insertId, message: 'User profile created successfully' });
+    } catch (error) {
+        console.error('Database error:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+

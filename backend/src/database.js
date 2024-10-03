@@ -2,26 +2,20 @@ import mysql2 from "mysql2/promise.js"
 
 const dbConfig = {
     host: "localhost",
+    database: "LanguageFusionSystem",
     user: "root",
-    password: "26035",
-    database: "LanguageFusionSystem"
+    password: "1234"
 }
 
 let connection;
 
 export const connectDB = async () => {
-    // if(connection) {
-    //     return connection;
-    // }
-
-    try {
+       try{
         const conn = await mysql2.createConnection(dbConfig);
-        // connection = conn;
 
         return conn;
     } catch (error) {
         console.error("Error: ",error);
-        // connection = null;
         return null;
     }
 }
