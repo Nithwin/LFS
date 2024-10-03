@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SideBar from './SideBar';
 import Home from './Home';
-import Task from './Task';
+import Task from './Task/Task';
 import Learning from './Learning';
 import Header from './Header';
 import { Routes, Route } from 'react-router-dom';
 import Faculty from './Faculty';
 import Profile from './Profile';
+import TakeTest from './Task/TakeTest';
 
 const Main: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
@@ -38,6 +39,7 @@ const Main: React.FC = () => {
           <Route path={'/dashboard'} element={<Home/>}/>
           <Route path={'/profile'} element={<Profile/>}/>
           <Route path={'/task'} element={<Task/>}/>
+          <Route path={'/task/test'} element={<TakeTest/>}/>
           <Route path={'/learning'} element={<Learning/>}/>
           <Route path={'/faculty'} element={<Faculty/>}/>
         </Routes>

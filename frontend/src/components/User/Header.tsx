@@ -33,12 +33,12 @@ const Header = ({ toggleSidebar }:{toggleSidebar: () => void }) => {
   <div className="flex items-center lg:order-2">
 
 
-   <Link to={'/profile'} className='mx-2 '>
+   <Link to={'/user/profile'} className='mx-2 '>
      <IoIosNotifications className='text-gray-400 size-6 hover:text-lightWhite ' />
     </Link>
 
 
-    <Link to={'/profile'} className='mx-2 '>
+    <Link to={'/user/profile'} className='mx-2 '>
      < FaThLarge className='text-gray-400 size-5 hover:text-lightWhite '/>
 
 

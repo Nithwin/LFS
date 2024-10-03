@@ -6,7 +6,7 @@ const Profile = () => {
   return (
     <main className="h-auto pt-20 md:ml-64">
 
-    <div className="justify-center p-4 mb-4 rounded-lg shadow-lr dark:border-gray-60" >
+    <div className="flex flex-col justify-center gap-10 p-4 mb-4 rounded-lg shadow-lr dark:border-gray-60 lg:flex-row" >
         <div className='flex justify-center '>
           <div className='shadow-xl'>
           <div>
@@ -77,29 +77,59 @@ const Profile = () => {
 
         </div>
 
-    </div>
-
-    <div className="justify-center p-4 mb-4 rounded-lg shadow-lr dark:border-gray-60" >
         <div className='flex justify-center '>
           <div className='shadow-xl'>
           <div>
+
+            <p className='text-xl font-bold text-start ms-5'>Academic Information</p>
              <div>
             <div className=''>
               <table className="w-full text-sm text-left text-gray-500 rtl:text-right ">
                 <tbody>
-
-                  <tr className="bg-white ">
-                    <th className="px-6 py-4 font-semibold text-black whitespace-nowrap "
+                <tr className="bg-white ">
+                    <th className="px-6 py-4 font-bold text-black whitespace-nowrap "
                       scope="row"><span>Information</span></th>
-                    <td className="px-6 py-4 text-back "> <span className='font-semibold text-black'>Details</span> </td>
+                    <td className="px-6 py-4 text-back ">
+                       <span className='font-semibold text-black'>Details</span> </td>
                   </tr>
 
                   <tr className="bg-white ">
                     <th className="px-6 py-4 font-semibold text-black whitespace-nowrap "
                       scope="row"><span>10th</span></th>
                     <td className="px-6 py-4 text-back ">
+                       <span className='font-semibold text-black'>80%</span> </td>
+                  </tr>
+
+                  <tr className="bg-white ">
+                    <th className="px-6 py-4 font-semibold text-black whitespace-nowrap "
+                      scope="row"><span>12th</span></th>
+                    <td className="px-6 py-4 text-back ">
                     <span className='font-semibold text-black'>80%</span> </td>
                   </tr>
+
+                  <tr className="bg-white ">
+                    <th className="px-6 py-4 font-semibold text-black whitespace-nowrap "
+                      scope="row"><span>Diploma</span></th>
+                    <td className="px-6 py-4 text-back ">
+                    <span className='font-semibold text-black'>Not Applicable</span> </td>
+                  </tr>
+
+                  <tr className="bg-white ">
+                    <th className="px-6 py-4 font-semibold text-black whitespace-nowrap "
+                      scope="row"><span>Current Backlogs</span></th>
+                    <td className="px-6 py-4 text-back ">
+                    <span className='font-semibold text-black'>0</span> </td>
+                  </tr>
+
+                  <tr className="bg-white ">
+                    <th className="px-6 py-4 font-semibold text-black whitespace-nowrap "
+                      scope="row"><span>Interested in Placement</span></th>
+                    <td className="px-6 py-4 text-back ">
+                    <span className='font-semibold text-black'>Yes</span> </td>
+                  </tr>
+
+
+
                 </tbody>
               </table>
 </div>
@@ -110,9 +140,7 @@ const Profile = () => {
           </div>
 
         </div>
-
     </div>
-
   </main>
   )
 }
