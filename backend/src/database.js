@@ -2,7 +2,7 @@ import mysql2 from "mysql2/promise.js"
 
 const dbConfig = {
     host: "localhost",
-    database: "LanguageFusionSystem",
+    database: "LFS",
     user: "root",
     password: "1234"
 }

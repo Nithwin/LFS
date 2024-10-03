@@ -61,30 +61,28 @@ app.get("/user/:email", async (req, res) => {
     const user_email = req.params.email;
 
     try {
-        const connection = await mysql.createConnection(dbConfig);
-
         const query = `
             SELECT 
                 up.id, 
                 up.name, 
-                up.register_number, 
+                up.reg_no, 
                 up.email, 
                 up.phone, 
                 up.gender, 
                 up.date_of_birth, 
                 ai.tenth_marks, 
-                ai.twelfth_marks, 
+                ai.twelth_marks, 
                 ai.diploma, 
                 ai.current_backlogs, 
                 ai.interested_in_placement 
             FROM 
                 userprofile up 
             LEFT JOIN 
-                academic_information ai ON up.academic_info_id = ai.id 
+                academic_info ai ON up.academic_info_id = ai.id 
             WHERE 
                 up.email = ?`;
 
-        const [results] = await connection.execute(query, [user_email]);
+        const [results] = await conn.execute(query, [user_email]);
 
         if (results.length === 0) {
             return res.status(404).json({ message: 'User not found' });
@@ -102,7 +100,7 @@ app.post("/user", async (req, res) => {
 
     try {
         const [academicResult] = await conn.execute(
-            `INSERT INTO academic_information (tenth_marks, twelfth_marks, diploma, current_backlogs, interested_in_placement) 
+            `INSERT INTO academic_info (tenth_marks, twelth_marks, diploma, current_backlogs, interested_in_placement) 
              VALUES (?, ?, ?, ?, ?)`,
             [academic_info.tenth_marks, academic_info.twelfth_marks, academic_info.diploma, academic_info.current_backlogs, academic_info.interested_in_placement]
         );
@@ -110,7 +108,7 @@ app.post("/user", async (req, res) => {
         const academicInfoId = academicResult.insertId;
 
         const [userResult] = await conn.execute(
-            `INSERT INTO userprofile (name, register_number, email, phone, gender, date_of_birth, academic_info_id) 
+            `INSERT INTO userprofile (name, reg_no, email, phone, gender, date_of_birth, academic_info_id) 
              VALUES (?, ?, ?, ?, ?, ?, ?)`,
             [name, register_number, email, phone, gender, date_of_birth, academicInfoId]
         );
