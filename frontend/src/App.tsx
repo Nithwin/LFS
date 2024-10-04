@@ -10,7 +10,7 @@ import Header from './components/VeryFirstPage/Header/Header';
 import Home from './components/VeryFirstPage/Home/Home';
 import About from './components/VeryFirstPage/About/About';
 import Contact from './components/VeryFirstPage/Contact/Contact';
-
+import Test from './components/User/Test/Main';
 function App() {
   return (
     <div className='p-2 '>
@@ -23,6 +23,7 @@ function App() {
   <Route path="/admin-login" element={<AdminLogin />} />
   <Route path="/user/*" element={<User />} />
   <Route path="/admin/*" element={<Admin />} />
+  <Route path={"/test"} element={<Test/>}></Route>
 </Routes>
 
 

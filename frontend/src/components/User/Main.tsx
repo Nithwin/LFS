@@ -32,8 +32,8 @@ const Main: React.FC = () => {
 
   return (
     <section className=''>
-      <Header toggleSidebar={toggleSidebar} />
-      <SideBar isOpen={sidebarOpen} />
+            <Header toggleSidebar={toggleSidebar} />
+            <SideBar isOpen={sidebarOpen} />
       <div ref={mainContentRef}>
         <Routes>
           <Route path={'/dashboard'} element={<Home/>}/>
