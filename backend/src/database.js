@@ -4,7 +4,7 @@ const dbConfig = {
     host: "localhost",
     database: "LFS",
     user: "root",
-    password: "1234"
+    password: "26035"
 }
 
 let connection;
